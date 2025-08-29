@@ -5,7 +5,7 @@ import UserModel from "../models/user.model";
 import { encrypt } from "../utils/encryption";
 import { generateToken } from "../utils/jwt";
 
-import {IReqUser} from "../middleware/auth.middleware";
+import { IReqUser } from "../utils/interfaces";
 
 type TRegister = {
     fullName: string;

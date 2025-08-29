@@ -1,0 +1,12 @@
+import { Request} from 'express'
+import { Types } from "mongoose";
+import { User } from "../models/user.model";
+
+// extend from class user but without all required properties
+export interface IUserToken extends Omit<User,"password"|"activationCode"|"isActive"|"email"|"fullName"|"profilePicture"|"username">{
+    id?: Types.ObjectId;
+}
+
+export interface IReqUser extends Request {
+    user?: IUserToken;
+}

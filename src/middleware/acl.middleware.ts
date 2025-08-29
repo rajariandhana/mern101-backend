@@ -1,5 +1,6 @@
 import { Response, NextFunction } from "express";
-import { IReqUser } from "./auth.middleware";
+import { IReqUser } from "../utils/interfaces";
+
 export default(roles: string[])=>{
   return (req:IReqUser, res:Response, next:NextFunction) => {
     const role = req.user?.role;

@@ -8,6 +8,8 @@ import dummyController from '../controllers/dummy.controller';
 import { ROLES } from '../utils/constant';
 import authMiddleware from '../middleware/auth.middleware';
 import aclMiddleware from '../middleware/acl.middleware';
+import mediaMiddleware from '../middleware/media.middleware';
+import mediaController from '../controllers/media.controller';
 
 const router = express.Router();
 
@@ -26,5 +28,15 @@ router.get('/test-acl',
     })
   }
 );
+
+router.post('/media/upload-single', [
+  authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MEMBER]), mediaMiddleware.single("file"), mediaController.single
+]);
+router.post('/media/upload-multiple', [
+  authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MEMBER]), mediaMiddleware.multiple("files"), mediaController.multiple
+]);
+router.delete('/media/remove', [
+  authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MEMBER]), mediaController.remove
+]);
 
 export default router;
