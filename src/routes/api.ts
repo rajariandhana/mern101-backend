@@ -11,6 +11,7 @@ import aclMiddleware from '../middleware/acl.middleware';
 import mediaMiddleware from '../middleware/media.middleware';
 import mediaController from '../controllers/media.controller';
 import categoryController from '../controllers/category.controller';
+import regionController from '../controllers/region.controller';
 
 const router = express.Router();
 
@@ -45,5 +46,11 @@ router.post('/media/upload-multiple', [
 router.delete('/media/remove', [
   authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MEMBER]), mediaController.remove
 ]);
+
+router.get('/regions', regionController.getAllProvinces);
+router.get('/regions/:id/province', regionController.getProvince);
+router.get('/regions/:id/district', regionController.getDistrict);
+router.get('/regions/:id/village', regionController.getVillage);
+router.get('/regions-search', regionController.findByCity);
 
 export default router;
