@@ -40,6 +40,28 @@ const doc = {
                 code:"abcdef"
             }
         },
+        CreateCategoryRequest: {
+            name: "",
+            banner: "",
+            icon: "",
+        },
+        CreateEventRequest: {
+            name: "",
+            banner: "fileUrl",
+            category: "category ObjectID",
+            description: "",
+            startDate: "yyyy-mm-dd hh:mm:ss",
+            endDate: "yyyy-mm-dd hh:mm:ss",
+            location: {
+                region: "region id",
+                coordinates: [0, 0]
+            },
+            isOnline: false,
+            isFeatured: false
+        },
+        RemoveMediaRequest: {
+            fileUrl: ""
+        }
     },
 };
 swaggerAutogen({openapi:"3.0.0"})(outputFile, endpointsFiles, doc);
